@@ -43,6 +43,7 @@ private:
 	bool overcount;
 	void _h();
 	bool verbose = false;
+	unsigned int id;
 public:
 	unsigned char DisplayedDigits[MAXDISPLAYS];
 	Driver_74LS47(unsigned char display, unsigned int startpin);

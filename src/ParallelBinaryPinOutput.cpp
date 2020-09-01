@@ -77,6 +77,9 @@ void Bit4OutPins::Write(bool A, bool B, bool C, bool D) {
 //----------------
 
 Driver_74LS47::Driver_74LS47(unsigned char displays, unsigned int startpin) {
+	static int Instances = 0;
+	id = Instances;
+	Instances++;
 	overcount = false;
 	DisplayCount = displays;
 	MaxNumber = pow(10, displays) - 1;
@@ -191,7 +194,9 @@ void Driver_74LS47::OutputAll0() {
 }
 
 void Driver_74LS47::_h() {
-	Serial.print("Driver_74LS47: ");
+	Serial.print("Driver_74LS47(");
+	Serial.print(id);
+	Serial.print("): ");
 }
 
 void Driver_74LS47::PrintAllPins() {
