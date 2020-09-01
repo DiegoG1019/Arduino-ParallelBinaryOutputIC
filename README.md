@@ -1,0 +1,1 @@
+Provides a simple interface to control 7447 ICs in order to manipulate as many 7 segment displays as required
