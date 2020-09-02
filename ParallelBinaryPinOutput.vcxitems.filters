@@ -11,15 +11,23 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="$(MSBuildThisFileDirectory)src\ParallelBinaryPinOutput.cpp">
+    <Text Include="$(MSBuildThisFileDirectory)readme.txt" />
+    <Text Include="$(MSBuildThisFileDirectory)library.properties" />
+    <Text Include="C:\Users\Barbara Patricia\Documents\Workspace\Programming\Arduino-74LS47\src\Driver_74LS47.h">
+      <Filter>Header Files</Filter>
+    </Text>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="C:\Users\Barbara Patricia\Documents\Workspace\Programming\Arduino-74LS47\src\Driver_74LS47.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Barbara Patricia\Documents\Workspace\Programming\Arduino-74LS47\Bit4OutPins.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="$(MSBuildThisFileDirectory)readme.txt" />
-    <Text Include="$(MSBuildThisFileDirectory)library.properties" />
-    <Text Include="$(MSBuildThisFileDirectory)src\ParallelBinaryPinOutput.h">
+    <ClInclude Include="C:\Users\Barbara Patricia\Documents\Workspace\Programming\Arduino-74LS47\Bit4OutPins.h">
       <Filter>Header Files</Filter>
-    </Text>
+    </ClInclude>
   </ItemGroup>
 </Project>

@@ -1,9 +1,10 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup Label="Globals">
     <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
     <HasSharedItems>true</HasSharedItems>
     <ItemsProjectGuid>{a1b191f7-1dcb-40af-bdb8-2f91b62c4be1}</ItemsProjectGuid>
+    <ItemsProjectName>ParallelBinaryOutputIC</ItemsProjectName>
   </PropertyGroup>
   <ItemDefinitionGroup>
     <ClCompile>
@@ -15,13 +16,15 @@
   </ItemGroup>
   <ItemGroup>
     <Text Include="$(MSBuildThisFileDirectory)readme.txt" />
-	<Text Include="$(MSBuildThisFileDirectory)library.properties" />
-  	<Text Include="$(MSBuildThisFileDirectory)src\ParallelBinaryPinOutput.h" />
-  </ItemGroup>
- <ItemGroup>
-    <!-- <ClInclude Include="$(MSBuildThisFileDirectory)ParallelBinaryPinOutput.h" /> -->
+    <Text Include="$(MSBuildThisFileDirectory)library.properties" />
+    <Text Include="$(MSBuildThisFileDirectory)src\Driver_74LS47.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="$(MSBuildThisFileDirectory)src\ParallelBinaryPinOutput.cpp" />
+    <!-- <ClInclude Include="$(MSBuildThisFileDirectory)ParallelBinaryPinOutput.h" /> -->
+    <ClInclude Include="$(MSBuildThisFileDirectory)Bit4OutPins.h" />
   </ItemGroup>
-  </Project>
+  <ItemGroup>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Bit4OutPins.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\Driver_74LS47.cpp" />
+  </ItemGroup>
+</Project>
