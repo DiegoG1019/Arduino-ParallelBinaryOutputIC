@@ -31,6 +31,7 @@ private:
 	void _h();
 	bool verbose = false;
 	unsigned int id;
+	void _init(unsigned char displays, unsigned int* pins);
 public:
 	unsigned char DisplayedDigits[MAXDISPLAYS];
 	Driver_74LS47(unsigned char display, unsigned int startpin);

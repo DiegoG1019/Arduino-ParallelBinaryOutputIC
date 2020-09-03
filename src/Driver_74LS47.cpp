@@ -7,7 +7,7 @@
 
 #include "Driver_74LS47.h"
 
-Driver_74LS47::Driver_74LS47(unsigned char displays, unsigned int* pins) {
+void Driver_74LS47::_init(unsigned char displays, unsigned int* pins) {
 	static int Instances = 0;
 	id = Instances;
 	Instances++;
@@ -23,7 +23,6 @@ Driver_74LS47::Driver_74LS47(unsigned char displays, unsigned int* pins) {
 		return;
 	}
 	Serial.println("Initializing driver object with: ");
-
 	for (int ind = 0; ind < displays; ind++) {
 		int pinsForBitOut[4];
 		int offset = ind * 4;
@@ -43,47 +42,20 @@ Driver_74LS47::Driver_74LS47(unsigned char displays, unsigned int* pins) {
 	}
 }
 
-///Figure out how to make this so "startpin" is used to create an array that is tend passed to the
-///above constructor
-Driver_74LS47::Driver_74LS47(unsigned char displays, unsigned int startpin) {
-	static int Instances = 0;
-	id = Instances;
-	Instances++;
-	overcount = false;
-	DisplayCount = displays;
-	MaxNumber = pow(10, displays) - 1;
-	for (int a = 0; a < MAXDISPLAYS; a++) {
-		DisplayedDigits[a] = 0;
-	}
-	_h();
-	if (displays > MAXDISPLAYS) {
-		Serial.println("ERROR: display number surpasses Maximum Displays allowed. Check the library's source code \"Driver_74LS47.h\"@line19");
-		return;
-	}
-	Serial.println("Initializing driver object with: ");
+Driver_74LS47::Driver_74LS47(unsigned char displays, unsigned int* pins) {
+	_init(displays, pins);
+}
 
+Driver_74LS47::Driver_74LS47(unsigned char displays, unsigned int startpin) {
+	unsigned int* pinarray = new int[displays * 4];
 	for (int ind = 0; ind < displays; ind++) {
-		int offset = (ind * 4) + startpin;
-		int pins[4];
-		pins[0] = offset + 0;
-		pins[1] = offset + 1;
-		pins[2] = offset + 2;
-		pins[3] = offset + 3;
-		Serial.print("	");
-		this->displays[ind] = new BitOutPins<4>(pins, ind);
-		
-		Serial.print("	Display: ");
-		Serial.print(ind);
-		Serial.print(" w/ pins: ");
-		for (int alpha = 0; alpha < 4; alpha++) {
-			Serial.print(" ");
-			Serial.print(pins[alpha]);
+		int arrayoffset = ind * 4;
+		int pinselect = arrayoffset + startpin;
+		for (int arrayselector = 0; arrayselector < 4; arrayselector++) {
+			pinarray[arrayoffset + arrayselector] = pinselect + arrayselector;
 		}
-		Serial.println();
 	}
-	for (int ind = 0; ind < displays; ind++) {
-		
-	}
+	_init(displays, pinarray);
 }
 
 void Driver_74LS47::CalcOutput(unsigned int value) {
