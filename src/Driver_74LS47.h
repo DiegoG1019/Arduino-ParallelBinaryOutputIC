@@ -19,12 +19,12 @@
 #define MAXDISPLAYS 6
 #define DELAYTIME 100
 
-#include "../Bit4OutPins.h"
+#include "BitOutPins.h"
 
 class Driver_74LS47
 {
 private:
-	Bit4OutPins* displays[MAXDISPLAYS];
+	BitOutPins<4>* displays[MAXDISPLAYS];
 	unsigned char DisplayCount;
 	unsigned int MaxNumber;
 	bool overcount;

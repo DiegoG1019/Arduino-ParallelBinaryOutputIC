@@ -33,7 +33,7 @@ Driver_74LS47::Driver_74LS47(unsigned char displays, unsigned int startpin) {
 		pins[2] = offset + 2;
 		pins[3] = offset + 3;
 		Serial.print("	");
-		this->displays[ind] = new Bit4OutPins(pins[0], pins[1], pins[2], pins[3], ind);
+		this->displays[ind] = new BitOutPins<4>(pins, ind);
 		
 		Serial.print("	Display: ");
 		Serial.print(ind);
@@ -87,7 +87,7 @@ void Driver_74LS47::Write() {
 			Serial.print(a);
 			Serial.print(" Binary: ");
 		}
-		displays[a]->Write16(DisplayedDigits[a]);
+		displays[a]->WriteN(DisplayedDigits[a]);
 		if (verbose) {
 			Serial.println();
 		}
@@ -146,7 +146,7 @@ void Driver_74LS47::TestSequence(unsigned int ms) {
 	for (int a = 0; a < DisplayCount; a++) {
 		for (int b = 0; b < 16; b++) {
 			Serial.print("	>");
-			displays[a]->Write16(b);
+			displays[a]->WriteN(b);
 			Serial.println();
 			delay(ms);
 		}
@@ -161,7 +161,7 @@ void Driver_74LS47::LampTest() {
 	Serial.println("Executing lamptest for all displays");
 	for (int a = 0; a < DisplayCount; a++) {
 		Serial.print("	>");
-		displays[a]->Write16(8);
+		displays[a]->WriteN(8);
 		Serial.println();
 	}
 }
