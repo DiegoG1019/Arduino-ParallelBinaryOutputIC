@@ -8,13 +8,15 @@ Download the repo and throw it into the Arduino/libraries folder, then simply ad
 
 ## Supported Modes
 
-Binary output through 4 pins acting as a single parallel output port
+Binary output through a given number of pins acting as a single parallel output port
 
 74LS47 4bit 7Segment decoder Integrated Circuit
 
+74LS138 3bit 1-8 demultiplexer (A simple BitOutPins<3> would suffice)
+
 ## Usage
 
-Refer to the examples for in-depth info
+Refer to the examples and /docs for in-depth info
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
