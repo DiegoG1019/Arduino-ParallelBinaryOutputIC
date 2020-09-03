@@ -7,6 +7,44 @@
 
 #include "Driver_74LS47.h"
 
+Driver_74LS47::Driver_74LS47(unsigned char displays, unsigned int* pins) {
+	static int Instances = 0;
+	id = Instances;
+	Instances++;
+	overcount = false;
+	DisplayCount = displays;
+	MaxNumber = pow(10, displays) - 1;
+	for (int a = 0; a < MAXDISPLAYS; a++) {
+		DisplayedDigits[a] = 0;
+	}
+	_h();
+	if (displays > MAXDISPLAYS) {
+		Serial.println("ERROR: display number surpasses Maximum Displays allowed. Check the library's source code \"Driver_74LS47.h\"@line19");
+		return;
+	}
+	Serial.println("Initializing driver object with: ");
+
+	for (int ind = 0; ind < displays; ind++) {
+		int pinsForBitOut[4];
+		int offset = ind * 4;
+		for (int pinIndex = 0; pinIndex < 4; pinIndex++) {
+			pinsForBitOut[pinIndex] = pins[offset + pinIndex];
+		}
+		Serial.print("	");
+		this->displays[ind] = new BitOutPins<4>(pinsForBitOut, ind);
+		Serial.print("	Display: ");
+		Serial.print(ind);
+		Serial.print(" w/ pins: ");
+		for (int alpha = 0; alpha < 4; alpha++) {
+			Serial.print(" ");
+			Serial.print(pins[alpha]);
+		}
+		Serial.println();
+	}
+}
+
+///Figure out how to make this so "startpin" is used to create an array that is tend passed to the
+///above constructor
 Driver_74LS47::Driver_74LS47(unsigned char displays, unsigned int startpin) {
 	static int Instances = 0;
 	id = Instances;
@@ -17,15 +55,14 @@ Driver_74LS47::Driver_74LS47(unsigned char displays, unsigned int startpin) {
 	for (int a = 0; a < MAXDISPLAYS; a++) {
 		DisplayedDigits[a] = 0;
 	}
-
 	_h();
-	Serial.println("Initializing driver object with: ");
-
 	if (displays > MAXDISPLAYS) {
+		Serial.println("ERROR: display number surpasses Maximum Displays allowed. Check the library's source code \"Driver_74LS47.h\"@line19");
 		return;
 	}
+	Serial.println("Initializing driver object with: ");
+
 	for (int ind = 0; ind < displays; ind++) {
-		int a, b, c, d;
 		int offset = (ind * 4) + startpin;
 		int pins[4];
 		pins[0] = offset + 0;
@@ -43,6 +80,9 @@ Driver_74LS47::Driver_74LS47(unsigned char displays, unsigned int startpin) {
 			Serial.print(pins[alpha]);
 		}
 		Serial.println();
+	}
+	for (int ind = 0; ind < displays; ind++) {
+		
 	}
 }
 

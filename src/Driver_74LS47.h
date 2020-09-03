@@ -16,7 +16,7 @@
 
 #endif
 
-#define MAXDISPLAYS 6
+#define MAXDISPLAYS 2 //Varies depending on the Arduino model used. Due to pin quantity, recommended for Uno and similar models is 2
 #define DELAYTIME 100
 
 #include "BitOutPins.h"
@@ -34,6 +34,7 @@ private:
 public:
 	unsigned char DisplayedDigits[MAXDISPLAYS];
 	Driver_74LS47(unsigned char display, unsigned int startpin);
+	Driver_74LS47(unsigned char display, unsigned int* pins);
 	void PrintAllPins();
 	void CalcOutput(unsigned int value);
 	void Write();
