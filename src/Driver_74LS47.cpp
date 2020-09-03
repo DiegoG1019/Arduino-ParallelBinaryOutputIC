@@ -152,7 +152,7 @@ void Driver_74LS47::PrintAllPins() {
 	}
 }
 
-void Driver_74LS47::TestSequence(unsigned int ms) {
+void Driver_74LS47::TestSequence(unsigned int ms = DELAYTIME) {
 	_h();
 	Serial.println("Executing TestSequence for all displays");
 	for (int a = 0; a < DisplayCount; a++) {
@@ -163,9 +163,6 @@ void Driver_74LS47::TestSequence(unsigned int ms) {
 			delay(ms);
 		}
 	}
-}
-void Driver_74LS47::TestSequence() {
-	TestSequence(DELAYTIME);
 }
 
 void Driver_74LS47::LampTest() {
@@ -178,7 +175,7 @@ void Driver_74LS47::LampTest() {
 	}
 }
 
-void Driver_74LS47::FullSequence(unsigned int ms) {
+void Driver_74LS47::FullSequence(unsigned int ms = DELAYTIME) {
 	_h();
 	Serial.print("Executing a full sequence. This may take a few seconds. MaxNumber = ");
 	Serial.print(MaxNumber);
@@ -195,10 +192,6 @@ void Driver_74LS47::FullSequence(unsigned int ms) {
 	if (verbose) {
 		Serial.println("***");
 	}
-}
-
-void Driver_74LS47::FullSequence() {
-	FullSequence(DELAYTIME);
 }
 
 bool Driver_74LS47::IsVerbose() {

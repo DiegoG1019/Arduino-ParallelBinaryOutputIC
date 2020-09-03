@@ -43,11 +43,9 @@ public:
 	bool IsOverCounting(); //Is it attempting to display a number higher than what it can
 	void All0();
 	void OutputAll0();
-	void TestSequence();
-	void TestSequence(unsigned int ms);
+	void TestSequence(unsigned int ms = DELAYTIME);
 	void LampTest();
-	void FullSequence();
-	void FullSequence(unsigned int ms);
+	void FullSequence(unsigned int ms = DELAYTIME);
 	bool IsVerbose();
 	void Verbosity(bool v);
 };
