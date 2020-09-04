@@ -47,7 +47,7 @@ Driver_74LS47::Driver_74LS47(unsigned char displays, unsigned int* pins) {
 }
 
 Driver_74LS47::Driver_74LS47(unsigned char displays, unsigned int startpin) {
-	unsigned int* pinarray = new int[displays * 4];
+	unsigned int* pinarray = new unsigned int[displays * 4];
 	for (int ind = 0; ind < displays; ind++) {
 		int arrayoffset = ind * 4;
 		int pinselect = arrayoffset + startpin;
@@ -152,7 +152,7 @@ void Driver_74LS47::PrintAllPins() {
 	}
 }
 
-void Driver_74LS47::TestSequence(unsigned int ms = DELAYTIME) {
+void Driver_74LS47::TestSequence(unsigned int ms) {
 	_h();
 	Serial.println("Executing TestSequence for all displays");
 	for (int a = 0; a < DisplayCount; a++) {
@@ -175,7 +175,7 @@ void Driver_74LS47::LampTest() {
 	}
 }
 
-void Driver_74LS47::FullSequence(unsigned int ms = DELAYTIME) {
+void Driver_74LS47::FullSequence(unsigned int ms) {
 	_h();
 	Serial.print("Executing a full sequence. This may take a few seconds. MaxNumber = ");
 	Serial.print(MaxNumber);

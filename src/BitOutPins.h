@@ -1,5 +1,11 @@
 #pragma once
 
+#if defined(ARDUINO) && ARDUINO >= 100
+#include "arduino.h"
+#else
+#include "WProgram.h"
+#endif
+
 template <int pinCount>
 class BitOutPins
 {
@@ -15,3 +21,5 @@ public:
 	void Write(bool pinstates[pinCount]);
 	BitOutPins(int assignedPins[pinCount], int id);
 };
+
+template class BitOutPins<4>;

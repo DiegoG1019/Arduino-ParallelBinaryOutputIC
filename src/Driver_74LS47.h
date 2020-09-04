@@ -5,21 +5,9 @@
  Editor:	http://www.visualmicro.com
 */
 
-#ifndef _ParallelBinaryPinOutput_h
-#define _ParallelBinaryPinOutput_h
-
-#if defined(ARDUINO) && ARDUINO >= 100
-	#include "arduino.h"
-#else
-	#include "WProgram.h"
-#endif
-
-#endif
-
+#include "BitOutPins.h"
 #define MAXDISPLAYS 2 //Varies depending on the Arduino model used. Due to pin quantity, recommended for Uno and similar models is 2
 #define DELAYTIME 100
-
-#include "BitOutPins.h"
 
 class Driver_74LS47
 {
