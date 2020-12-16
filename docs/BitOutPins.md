@@ -2,7 +2,9 @@
 ## Syntax
 ```C++
 template<int pinCount>
-BitOutPins(int assignedPins[pinCount], int id);
+BitOutPins(int assignedPins[pinCount]);
+//
+BitOutPins<n> MyBitOutPins = new BitOutPins<n>();
 ```
 ## Class members
 ```C++
