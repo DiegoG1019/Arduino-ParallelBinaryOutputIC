@@ -9,20 +9,27 @@
 #define ON HIGH
 #define OFF LOW
 
-template <int pinCount>
-class BitOutPins
+class BitOutBase
 {
 protected:
-	int PinCount = pinCount;
+	static int Count;
+	BitOutBase(){};
+};
+
+template <int pinCount>
+class BitOutPins : BitOutBase
+{
+protected:
 	int pins[pinCount] = { 0 };
 	int Id;
-	void _h() {
+	void _h()
+	{
 		Serial.print("\nBitOutPins[");
 		Serial.print(pinCount);
 		Serial.print("] of Id(");
 		Serial.print(Id);
 		Serial.print("): ");
-	}
+	};
 public:
 	bool Verbose = false;
 	void PrintPins() {
@@ -44,12 +51,7 @@ public:
 				Serial.print("\" to pin");
 				Serial.print(pins[a]);
 			}
-			if (bitRead(n, a) == 0) {
-				digitalWrite(pins[a], OFF);
-			}
-			if (bitRead(n, a) == 1) {
-				digitalWrite(pins[a], ON);
-			}
+			digitalWrite(pins[a], (n&(B10000000>>a)) ? ON : OFF);
 		}
 	}
 	void Write(bool pinstates[pinCount]) {
@@ -57,8 +59,9 @@ public:
 			digitalWrite(pins[a], pinstates[a]);
 		}
 	}
-	BitOutPins(int assignedPins[pinCount], int id) {
-		Id = id;
+	BitOutPins(int assignedPins[pinCount]) {
+		Id = Count;
+		Count++;
 		_h();
 		Serial.print("Initializing pins: ");
 		for (int a = 0; a < pinCount; a++) {
@@ -71,6 +74,5 @@ public:
 			Serial.print(") ");
 		}
 		/**/
-
 	}
 };

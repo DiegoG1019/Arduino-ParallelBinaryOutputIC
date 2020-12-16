@@ -30,7 +30,7 @@ void Driver_74LS47::_init(unsigned char displays, unsigned int* pins) {
 			pinsForBitOut[pinIndex] = pins[offset + pinIndex];
 		}
 		Serial.print("	");
-		this->displays[ind] = new BitOutPins<4>(pinsForBitOut, ind);
+		this->displays[ind] = new BitOutPins<4>(pinsForBitOut);
 		Serial.print("	Display: ");
 		Serial.print(ind);
 		Serial.print(" w/ pins: ");
