@@ -17,7 +17,7 @@ protected:
 	int pins[pinCount] = { 0 };
 	int Id;
 	void _h() {
-		Serial.print("BitOutPins[");
+		Serial.print("\nBitOutPins[");
 		Serial.print(pinCount);
 		Serial.print("] of Id(");
 		Serial.print(Id);
@@ -37,7 +37,7 @@ public:
 		if (Verbose) {
 			_h();
 		}
-		for (int a = 0; a < 4; a++) {
+		for (int a = 0; a < pinCount; a++) {
 			if (Verbose) {
 				Serial.print(" \"");
 				Serial.print(bitRead(n, a));
